@@ -1,0 +1,27 @@
+[
+  {
+    "item_title": "Corner Permutation of the Last Layer",
+    "question": "꼭짓점 3개가 돌아가 있으면 어떤 공식 써?",
+    "expect": "A Permutation(Aa/Ab) 공식 안내 + 공식 3D 재생"
+  },
+  {
+    "item_title": "Corner Permutation of the Last Layer",
+    "question": "이거 누가 만들었어?",
+    "expect": "제안자 Jessica Fridrich, 연도 1981? — 불확실하다는 표시까지 전달"
+  },
+  {
+    "item_title": "2GR Method",
+    "question": "공식이 몇 개야?",
+    "expect": "84개"
+  },
+  {
+    "item_title": "Roux method",
+    "question": "CFOP보다 외울 공식이 적어?",
+    "expect": "Roux 9~42개 vs CFOP 78~119개 비교, 근거 인용"
+  },
+  {
+    "item_title": "CFOP method",
+    "question": "CFOP 연습하려면 큐브는 얼마짜리를 사야 해?",
+    "expect": "근거 없음 — 위키에 가격 정보가 없다 (2026-10-21 확인: price·cost·dollar·cheap·budget 검색 0건)"
+  }
+]

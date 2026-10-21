@@ -1,0 +1,12 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+
+# 수집 캐시 · Vector DB (재생성 가능)
+data/cache/
+data/chroma/
+
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo

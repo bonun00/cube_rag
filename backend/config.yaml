@@ -1,0 +1,63 @@
+# 큐브 RAG 설정값 — 경로는 프로젝트 루트(cube_rag/) 기준
+
+paths:
+  items: data/items.json
+  cache_dir: data/cache          # collected_queries.json, 문서 본문 캐시
+  chroma_dir: data/chroma
+
+# 항목 수집 (scripts/collect_items.py)
+items:
+  categories:                    # 인포박스 있는 문서만 항목으로 채택
+    - Category:3x3x3_methods
+    - Category:3x3x3 last layer substeps
+  beginner_category: Category:3x3x3 beginner methods and substeps   # 소속이면 level=입문
+  summary_max_chars: 500
+
+collections:
+  meta: cube_meta                # 항목 1건 = 1청크
+  docs: cube_docs                # 질문 시 수집한 외부 문서
+
+chunk:
+  size: 1000
+  overlap: 200
+
+# Speedsolving Wiki API 호출 규칙
+wiki:
+  api_url: https://www.speedsolving.com/wiki/api.php
+  page_url: https://www.speedsolving.com/wiki/index.php?title=
+  sleep_sec: 1.0                 # 호출 간격
+  max_retry: 3                   # 재시도 횟수 (지수 백오프)
+  backoff_base_sec: 2.0
+  timeout_sec: 20
+
+# 질문 1건당 수집 범위
+collect:
+  max_queries: 3                 # 프롬프트1이 만든 검색어 중 사용할 개수 (항목 제목은 별도로 항상 추가)
+  srlimit: 5                     # 검색어당 후보 수
+  max_docs: 4                    # 프롬프트2가 선택할 수 있는 최대 문서 수
+  min_wordcount: 30              # 이보다 짧은 후보는 선별 전에 제외 (선택 항목 자체 문서는 예외)
+
+retrieve:
+  top_k: 4
+  pinned_per_case: 2             # 질문에 케이스 이름이 있으면 그 케이스 청크를 이만큼 근거에 고정 (임베딩 순위와 무관)
+  use_mmr: false
+  mmr_fetch_k: 20
+  mmr_lambda: 0.5                # 1에 가까울수록 유사도, 0에 가까울수록 다양성
+
+llm:
+  temperature: 0
+
+chat:
+  history_turns: 6               # 프롬프트1·3에 넣는 최근 대화 수 (질문+답변 = 1턴)
+
+alg_picker:
+  beginner_max: 1                # 케이스당 공식 수
+  advanced_max: 3
+  max_cases: 3                   # 한 답변에 띄우는 공식 카드(케이스) 수
+
+item_search:
+  top_k: 10                      # 조건 탐색 시 cube_meta에서 가져올 후보 수
+
+api:
+  cors_origins:
+    - http://localhost:5173
